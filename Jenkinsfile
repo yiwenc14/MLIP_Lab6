@@ -16,8 +16,8 @@ pipeline {
                 echo 'Test Step: We run testing tool like pytest here'
 
                  # Create virtual environment if it doesn't exist
-                if [ ! -d "mlip_env" ]; then
-                    python3 -m venv mlip_env
+                if [ ! -d "mlip" ]; then
+                    python3 -m venv mlip
                 fi
 	
 		# Activate the virtual environment
