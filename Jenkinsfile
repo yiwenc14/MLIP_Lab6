@@ -15,12 +15,26 @@ pipeline {
                 sh '''#!/bin/bash
                 echo 'Test Step: We run testing tool like pytest here'
 
-                # Activate the virtual environment
+                 # Create virtual environment if it doesn't exist
+                if [ ! -d "mlip_env" ]; then
+                    python3 -m venv mlip_env
+                fi
+	
+		# Activate the virtual environment
                 source mlip/bin/activate
+
+		# Upgrade pip within the venv
+                pip install --upgrade pip
+
+		# Install dependencies inside the virtual environment
+                pip install pandas pytest scikit-learn
 
                 # Run pytest
                 pytest
 
+		# Deactivate the virtual environment
+                deactivate
+		
                 #echo 'pytest not runned'
                 #exit 1 #comment this line after implementing Jenkinsfile
                 '''
